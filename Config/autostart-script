@@ -1,0 +1,42 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          hma
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: hiding
+# Description:       hiding my ass
+### END INIT INFO
+
+case "$1" in
+    start)
+        echo "[bumb] Going into Stealth Mode..."
+		openvpn "/etc/openvpn/Germany.Hesse.Frankfurt.TCP.ovpn" &
+        ;;
+
+    stop)
+        echo "[bumb] Leaving Stealth Mode! Watch Y'ass Bro!"
+		killall openvpn
+        ;;
+
+    restart)
+        echo "[bumb] Reloading Stealth Mode..."
+		killall openvpn
+		sleep 1
+		openvpn "/etc/openvpn/Germany.Hesse.Frankfurt.TCP.ovpn" &
+        ;;
+ *)
+ #default
+ echo "(start|stop|restart)"
+ ;;
+esac
+
+exit 0
+
+
+#NOTE: make executeable
+#sudo chmod +x MeinProgramm
+#NOTE: add/remove autostart
+#sudo update-rc.d -f MeinProgramm  defaults|remove
+

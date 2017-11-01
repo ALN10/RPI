@@ -1,0 +1,1 @@
+echo "I will just append to my custom log file" >> /home/user/test.log

@@ -1,0 +1,11 @@
+sudo useradd -m tempuser
+sudo passwd tempuser
+sudo usermod -a -G sudo tempuser
+# login with tempuser
+# cd /etc/
+sudo tar -cvf authfiles.tar passwd group shadow gshadow sudoers lightdm/lightdm.conf systemd/system/autologin@.service sudoers.d/* polkit-1/localauthority.conf.d/60-desktop-policy.conf
+sudo sed -i.$(date +'%y%m%d_%H%M%S') 's/\bpi\b/[new_user]/g' passwd group shadow gshadow sudoers lightdm/lightdm.conf systemd/system/autologin@.service sudoers.d/* polkit-1/localauthority.conf.d/60-desktop-policy.conf
+sudo mv /home/pi /home/[new_user]
+sudo ln -s /home/[new_user] /home/pi
+# login [new_user]
+sudo userdel tempuser
